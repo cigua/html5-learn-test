@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+	<title>小球运动</title>
+	<script type="text/javascript" src="jquery-3.0.0.min.js"></script>
+	<script type="text/javascript">
+	$().ready(function(){
+		//获取变量
+		var d=$("#cans").get(0).getContext("2d");
+		var dir=0;
+		var width=500;
+		var height=200;
+		var exp=1;
+		function text(){
+			d.clearRect(0,0,width,height);//清除原始图形
+			d.fillStyle="red";
+			d.beginPath();//开始画
+			d.arc(50,dir,20,0,Math.PI*2,true);
+			//d.arc(50,dir,dir,0,Math.PI*2,true);
+			d.closePath();//结束画布
+			d.fill();//结束渲染
+			dir+=exp;
+			if(dir==0 || dir==height){
+				exp*=-1;
+			}
+		}
+		var clear;
+		$("#btn1").bind("click",function(){
+			setInterval(text,20);
+		});
+		$("#btn2").bind("click",function(){
+			clearInterval(clear);
+		});
+
+	});
+	</script>
+</head>
+<body>
+	<canvas id="cans" width="500" height="200"></canvas>
+	<div id="res"></div>
+	<button id="btn1">开始</button><button id="btn2">停止</button>
+</body>
+</html>
